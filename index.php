@@ -6,8 +6,8 @@
  * 
  */
 
-require 'Application.php';
-require 'BaseActions.php';
+require 'system/Application.php';
+require 'system/BaseActions.php';
 
 define('APPLICATION', 'frontend');
 
