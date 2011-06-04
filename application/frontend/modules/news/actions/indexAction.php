@@ -3,6 +3,6 @@ class indexAction extends BaseActions
 {
 	function index()
 	{
-		$this->name = 'vahid'; 
+		$this->name = 'vahid';
 	}
 }

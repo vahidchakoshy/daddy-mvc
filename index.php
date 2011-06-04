@@ -14,3 +14,4 @@ define('APPLICATION', 'frontend');
 $app = new Application();
 $app->init();
 $app->start();
+$app->dispatch();

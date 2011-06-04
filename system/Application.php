@@ -12,8 +12,12 @@ class Application
 	
 	function init()
 	{
-		require 'Router.php';
-		$this->Router = new Router();
+		$autoload_functions = array('Router', 'Template');
+		foreach ($autoload_functions as $class)
+		{
+			require $class.'.php';
+			$this->$class = new $class();
+		}
 	}
 	
 	public static function getInsetance()
@@ -33,7 +37,7 @@ class Application
 	
 	function dispatch()
 	{
-		
+		$this->Template->display();
 	}
 	
 }
