@@ -8,7 +8,7 @@
 	<tr>
 		<td><?php echo $row['id']?></td>
 		<td><?php echo $row['title']?></td>
-		<td><a href="<?php echo base_url() ?>index.php/news/view/<?php echo $row['id']?>">نمایش</a></td>
+		<td><a href="<?php echo base_url('index.php/news/view/'.$row['id'])?>">نمایش</a></td>
 	</tr>
 <?php endwhile;?>
 </table>
