@@ -47,9 +47,18 @@ class Application
 	
 	function start()
 	{
-		require 'application/'.APPLICATION .'/modules/'.$this->Router->module.'/actions/'.$this->Router->action.'Action.php';
-		$action = new indexAction();
-		$action->index();
+		$action_class = $this->Router->action.'Action';
+		$action_function = $this->Router->action;
+		if(file_exists('application/'.APPLICATION .'/modules/'.$this->Router->module.'/actions/'.$this->Router->action.'Action.php'))
+		{
+			require 'application/'.APPLICATION .'/modules/'.$this->Router->module.'/actions/'.$this->Router->action.'Action.php';
+			$action = new $action_class();
+			call_user_func_array(array(&$action, $action_function), $this->Router->params);
+
+		}else{
+			echo 'we dont have this action: <b>'.$this->Router->action. '</b> of module: <b>'.$this->Router->module .' </b>' ;
+			die();
+		}
 	}
 	
 	function dispatch()
