@@ -6,7 +6,8 @@ class Config
 	public static function init()
 	{
 		self::$configs = new stdClass();
-		$config_files = array('db' => 'database');
+		$config_files = array('db' => 'database',
+							  'router' => 'router');
 		foreach ($config_files as $var=>$file)
 		{
 			require 'application/'.APPLICATION.'/config/'.$file.'.php' ;
