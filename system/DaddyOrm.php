@@ -12,6 +12,8 @@ class DaddyOrm
 	var $database;
 	var $char_set;
 	
+	var $conditions = array();
+	
 	function __construct()
 	{
 		if( ! isset($this->conn))
@@ -47,10 +49,49 @@ class DaddyOrm
 	
 	function get($table)
 	{
-		$sql = "SELECT * FROM `$table`;";
-		return $this->_query($sql);
+		$sql = "SELECT * FROM `$table`  ";
+		$sql .= $this->_get_conditions();
 		
+		//echo $sql;
+		return $this->_query($sql);
 	}
+	
+	function get_row($table)
+	{
+		$sql = "SELECT * FROM `$table`  ";
+		$sql .= $this->_get_conditions();
+		
+		//echo $sql;
+		$result = $this->_query($sql);
+		$row = mysql_fetch_assoc($result);
+		return $row;
+	}
+	
+	function _get_conditions()
+	{
+		if($count = count($this->conditions))
+		{
+			$re = ' WHERE ';
+			for($i=0; $i<$count; $i++)
+			{
+				$re .= $this->conditions[$i];
+			}
+			return $re;
+		}
+		
+		return '';
+	}
+	
+	function where($field, $value)
+	{
+		if(is_string($value))
+		{
+			$this->conditions[] = "`$field` = '$value'";
+		}else{
+			$this->conditions[] = "`$field` = $value";
+		}
+	}
+	
 	function _query($sql)
 	{
 		$query = mysql_query($sql);
