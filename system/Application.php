@@ -54,7 +54,6 @@ class Application
 			require 'application/'.APPLICATION .'/modules/'.$this->Router->module.'/actions/'.$this->Router->action.'Action.php';
 			$action = new $action_class();
 			call_user_func_array(array(&$action, $action_function), $this->Router->params);
-
 		}else{
 			echo 'we dont have this action: <b>'.$this->Router->action. '</b> of module: <b>'.$this->Router->module .' </b>' ;
 			die();

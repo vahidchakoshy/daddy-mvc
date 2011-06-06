@@ -27,9 +27,19 @@ class Config
 	{
 		if($key != FALSE)
 		{
-			return self::$configs->$class->$key;
+			if(isset(self::$configs->$class->$key))
+			{
+				return self::$configs->$class->$key;
+			}else{
+				return FALSE;
+			}
 		}else{
-			return self::$configs->$class;
+			if(isset(self::$configs->$class))
+			{
+				return self::$configs->$class;
+			}else{
+				return FALSE;
+			}
 		}
 	}
 }

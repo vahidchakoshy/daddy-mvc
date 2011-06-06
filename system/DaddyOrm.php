@@ -44,7 +44,7 @@ class DaddyOrm
 	
 	function _setUnicode()
 	{
-		mysql_query("SET NAMES `".$this->char_set."`");
+		mysql_query("SET NAMES `".$this->char_set."`", $this->conn);
 	}
 	
 	function get($table)
@@ -94,7 +94,7 @@ class DaddyOrm
 	
 	function _query($sql)
 	{
-		$query = mysql_query($sql);
+		$query = mysql_query($sql, $this->conn);
 		return $query;
 	}
 }
