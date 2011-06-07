@@ -15,7 +15,7 @@ class Application
 		spl_autoload_register('Application::autoload');
 		
 		Config::init();
-		$autoload_functions = array('Router', 'Template', 'Autoload');
+		$autoload_functions = array('Router', 'Template', 'Autoload', 'Request');
 		foreach ($autoload_functions as $class)
 		{
 			require $class.'.php';

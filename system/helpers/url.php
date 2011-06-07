@@ -1,5 +1,5 @@
 <?php
-if( ! function_exists('base_irl'))
+if( ! function_exists('base_url'))
 {
 	function base_url($suffix = '')
 	{
@@ -10,5 +10,13 @@ if( ! function_exists('base_irl'))
 		}
 		
 		return $base_url;
+	}
+}
+
+if( ! function_exists('redirect'))
+{
+	function redirect($url)
+	{
+		header('Location: ' . $url);
 	}
 }

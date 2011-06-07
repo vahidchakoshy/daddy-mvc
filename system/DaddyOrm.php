@@ -12,6 +12,8 @@ class DaddyOrm
 	var $database;
 	var $char_set;
 	
+	var $insert_id;
+	
 	var $conditions = array();
 	
 	function __construct()
@@ -96,5 +98,26 @@ class DaddyOrm
 	{
 		$query = mysql_query($sql, $this->conn);
 		return $query;
+	}
+	
+	function insert($table, $data)
+	{
+		$query = "INSERT INTO `$table` 
+				  (`".implode('`,`', array_keys($data))."`) VALUES 
+				  ('".implode("','", array_values($data))."')";
+		
+		$this->_query($query);
+		if($this->set_insert_id())
+		{
+			return TRUE;
+		}
+		
+		return FALSE;
+	}
+	
+	private function set_insert_id()
+	{
+		$this->insert_id = mysql_insert_id($this->conn);
+		return $this->insert_id;
 	}
 }
