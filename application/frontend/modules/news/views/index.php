@@ -1,3 +1,4 @@
+<a href="<?php echo base_url('index.php/news/submit')?>">ارسال خبر جدید</a>
 <table>
 	<tr>
 		<td>ID</td>
