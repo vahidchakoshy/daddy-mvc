@@ -22,7 +22,11 @@ class Router
 			array_shift($uri_array);
 
 			$this->module = $uri_array[0];
-			$this->action = $uri_array[1];
+			
+			if(isset($uri_array[1]))
+			{
+				$this->action = $uri_array[1];
+			}
 
 			$this->params = array_slice($uri_array, 2);
 		}
